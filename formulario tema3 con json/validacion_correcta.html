@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación Correcta</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .contenedor {
+            text-align: center;
+            background: white;
+            padding: 40px 60px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
+        .titulo-validacion {
+            color: #4caf50;
+            margin-bottom: 24px;
+        }
+        .texto {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .datos-usuario {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: inset 0 0 10px #e0e0e0;
+        }
+        .boton-cerrar {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .boton-cerrar:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1 class="titulo-validacion">Validación Exitosa</h1>
+        <p class="texto">
+            Los datos se han validado correctamente. Almacenando los datos en la estructura <b>JSON</b>.
+        </p>
+        <div class="datos-usuario" id="mostrar_nombre"></div>
+        <div class="datos-usuario" id="mostrar_apellidos"></div>
+        <div class="datos-usuario" id="mostrar_dni"></div>
+        <div class="datos-usuario" id="mostrar_telefono"></div>
+        <div class="datos-usuario" id="mostrar_email"></div>
+        <div class="datos-usuario" id="mostrar_fecha"></div>
+        <div class="datos-usuario" id="mostrar_asignatura"></div>
+        <button class="boton-cerrar" onclick="window.close();">Cerrar Ventana</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            //  ------------------------- Mostrar lo que almacenan las cookies -------------------------
+            var datos = opener.mostrarDatosValidacionCorrecta(); // función que está en el script del formulario_colores.js
+            
+            document.getElementById("mostrar_nombre").textContent = "Nombre: " + datos.nombre; // datos.nombre viene de la funcion devolver nombre: document.getElementById("nombreInput").value, Basicamente es una categoria para saber lo que tiene que devolver en cada parrafo
+            document.getElementById("mostrar_apellidos").textContent = "Apellidos: " + datos.apellidos; // datos.apellidos viene de la funcion devolver,  apellidos: document.getElementById("apellidosInput").value,
+            document.getElementById("mostrar_dni").textContent = "DNI: " + datos.dni; //datos.dni viene de la funcion devolver, direccion: document.getElementById("direccionInput").value,
+            document.getElementById("mostrar_telefono").textContent = "Teléfono: " + datos.telefono;// datos.email viene de la funcion devolver edad: document.getElementById("edadInput").value,
+            document.getElementById("mostrar_email").textContent = "Email: " + datos.email;// datos.edad viene de la funcion devolver email: document.getElementById("email_id").value*/
+            document.getElementById("mostrar_fecha").textContent = "Fecha de nacimiento: " + datos.fechaNacimiento;// datos.edad viene de la funcion devolver email: document.getElementById("email_id").value*/
+            document.getElementById("mostrar_asignatura").textContent = "Asignatura: " + datos.asignatura;// datos.edad viene de la funcion devolver email: document.getElementById("email_id").value*/
+            //  -------------------------  Fin Mostrar lo que almacenan las cookies -------------------------
+        });
+    </script>
+</body>
+</html>

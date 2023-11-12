@@ -1,0 +1,9 @@
+.error-mensaje {
+    color: red;
+    font-style: italic;
+  }
+
+  .mensaje-verde{
+    color: green;
+    font-style: italic;
+  }

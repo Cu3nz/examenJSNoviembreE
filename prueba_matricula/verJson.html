@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver JSON</title>
+</head>
+<body>
+    <pre id="jsonContent"></pre>
+    <script>
+        // Este script escuchará mensajes de la otra página
+        window.addEventListener('message', (event) => {
+            // En un entorno de producción, deberías verificar event.origin aquí
+            document.getElementById('jsonContent').textContent = event.data;
+        }, false);
+    </script>
+</body>
+</html>

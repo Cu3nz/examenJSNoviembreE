@@ -1,0 +1,119 @@
+<!-- 7 noviembre 21:35-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwindcss -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- CDN Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Formulario de validacion</title>
+    <!--? Codigo javascript-->
+<script defer src="js/formulario_json copy.js"></script> 
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <!-- 1. Realiza una página web con un formulario que al añadir Nombre, Apellidos, DNI, Teléfono y Email, almacene en las cookies de la web toda esa información durante 1hora.  -->
+
+    <!-- dni validos -->
+    <p>40677058V</p>
+    <p>42626172L</p>
+    <p>74876058H</p>
+    <p>21412308K</p>
+    <p>31136012S</p>
+
+    <section class="bg-gray-50 dark:bg-gray-900">
+        <div class="flex flex-col items-center justify-center px-4 py-8 mx-auto sm:w-full md:w-3/4 lg:w-1/2">
+            <div class="w-full bg-white rounded-lg shadow dark:border sm:max-w-md md:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Formulario de Validacion Usuario Json.</h1>
+                        <div>
+                            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu nombre</label>
+                            <input type="text" value="Sergio" name="nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sergio" required="">
+                        </div>
+                        <div>
+                            <label for="apellidos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tus Apellidos</label>
+                            <input type="text" value="Fernandez perez" name="Apellidos" id="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rul Mateo" required="">
+                        </div>
+                        <div>
+                            <label for="dni" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu DNI</label>
+                            <input type="text" value="42626172L" name="dni" id="dni" maxlength="9" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="77345678V" required="">
+                        </div>
+
+                        <div>
+                            <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tú Télefono</label>
+                            <input type="text" value="640600708" name="telefono" maxlength="9" id="telefono" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="630567887" required="">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu Email</label>
+                            <input type="email" value="sergio_galle@gmail." name="email" id="email" placeholder="jfjgnfddf@gmail.com" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            
+                        </div>
+                        
+                        <div>
+                            <label for="fechaNacimiento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu Fecha de nacimiento</label>
+                            <input type="text" value="20/04/2001" name="fechaNacimiento" id="fechaNacimiento" placeholder="20/04/2023" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            
+                        </div>
+
+                         <!-- Sección de radio buttons -->
+                        <h3 class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Elige una opción</h3>
+                        <label><input type="radio" name="modoAcceso"  id="radioButtom" value="Diseño web">  Diseño de aplicaciones web</label>
+                        <label><input  checked type="radio" name="modoAcceso"  id="radioButtom" value="JavaScript"> JavaScript</label>
+                        <label><input type="radio" name="modoAcceso"  id="radioButtom"value="PHP"> PHP</label>
+                        <label><input type="radio" name="modoAcceso"  id="radioButtom" value="Empresas"> Empresas</label>
+                        <label><input type="radio" name="modoAcceso"  id="radioButtom" value="Horas libres configuracion"> Horas de libre configuracion</label>
+
+                        <div>
+                            <label for="existencia_cookie" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">¿Existe la cookie?</label>
+                            <input type="text"  name="existe"  id="existencia_cookie" placeholder="existe la cookie?" class="bg-gray-50 mb-4 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+
+                        <div>
+                            <label for="buscarDniInput" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Buscar DNI</label>
+                            <input type="text"  name="existe"  id="buscarDniInput" placeholder="Introduce el dni a buscar" class="bg-gray-50 mt-3 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                             <p class="block mt-3 mb-2 text-sm font-medium text-green-900 dark:text-white" id="mostrar_mensaje_dni"></p> <!--//! Parrafo donde se va a mostrar el error o si se ha encontrado el dni-->
+                            <button onclick="buscarDni()" name="btnLogin" class=" mt-4 w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Buscar DNI</button>
+                        </div>
+
+                        <div>
+                            <label for="buscarDniInput" class="block mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">Buscar Alumnos por asignatura por Asignatura</label>
+                            <input type="text"  name="existe"  id="buscarAsignaturaInput" placeholder="Introduce el dni a buscar" class="bg-gray-50 mt-3 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                             <p id="mostrar_mensaje_dni"></p> <!--//! Parrafo donde se va a mostrar el error o si se ha encontrado el dni-->
+                            <button onclick="buscarAlumnosPorAsignatura()" name="btnLogin" class=" mt-4 w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Buscar Alumnos</button>
+                            <p class="block mt-4 mb-2 text-sm font-medium text-green-900 dark:text-white" id="mostrar_mensaje_asignatura"></p>
+                        </div>
+
+                        <!--todo Boton de guardar las cookies-->
+                        <p class="text-green-600" id="mensaje_añadido_user_array"></p>
+                        <button onclick="guardar_cookies()" name="btnLogin" class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Guardar</button>
+
+                        <button onclick="verJson()" name="btnLogin" class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-green-800">Ver JSON</button>
+
+                        <button onclick="mostrarCookies()" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Mostrar Cookies</button>
+
+
+                        <button onclick="eliminar_cookies()" class="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Eliminar Cookies</button>
+
+                        <button onclick="existeCookie()" class="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Comprobar existencia cookie</button>
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+
+
+
+
+</body>
+
+
+</html>

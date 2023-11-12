@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver JSON</title>
+    <meta http-equiv="refresh" content="5">
+</head>
+<body bgcolor="#000" text="#fff">
+    <pre id="jsonContent"></pre>
+    <script>
+        // escucha el mensaje de la otra pagina
+        window.addEventListener('message', (event) => {
+            // Actualiza el contenido con los datos recibidos
+            document.getElementById('jsonContent').textContent = event.data;
+        }, false);
+    </script>
+    
+</body>
+</html>

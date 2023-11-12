@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación Fallida</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            color: #ff5c5c;
+            margin-bottom: 0.5em; /* Espacio debajo del título */
+        }
+        .alert-box {
+            padding: 20px;
+            background-color: #ffdede;
+            border: 1px solid #ff5c5c;
+            border-radius: 5px;
+            color: #a33a3a;
+            margin-bottom: 20px;
+            font-size: 1.25em; /* Aumenta el tamaño del texto */
+        }
+        .btn-close {
+            padding: 10px 20px;
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px; /* Espacio encima del botón */
+        }
+        .btn-close:hover {
+            background-color: #e04e4e;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Validación Errónea</h1>
+    <div class="alert-box">
+        Ha habido un problema en las validaciones. <strong>Cierra esta ventana</strong>, revisa los datos y vuelve a intentarlo.
+    </div>
+
+    <button class="btn-close" onclick="window.close()">Cerrar ventana</button>
+
+</body>
+</html>
