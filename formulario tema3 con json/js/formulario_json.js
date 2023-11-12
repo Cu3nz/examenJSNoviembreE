@@ -40,6 +40,11 @@ function setCookie(cname, cvalue) {
     //todo Recogemos lo que el usuario escribe por cada input
     let input_nombre = document.getElementById("nombre").value.trim();
 
+    //Guardar lo que ha seleccionado el usuario en el radiobuttom
+    let RadioSeleccionado = document.querySelector("input[name='modoAcceso']:checked").value.toUpperCase();
+    console.log(RadioSeleccionado);
+
+
     //! --------------------------------------- VALIDACION DE NOMBRE -------------------------------------
     
     let longitudNombre = 4
@@ -230,63 +235,22 @@ function setCookie(cname, cvalue) {
         //! ------------------------------------- FIN VALIDACION PARA LA FECHA -------------------------------------
 
     
+        //? abrir una ventana u otra si hay un error o mas en las validaciones o si no hay ningun error 
 
-  //? Si hay algun problema de validacion, muestro un mensaje por pantalla de que hay un error y que no se han almacenado las cookies 
+  if (!problemaValidacion){ //* Si no hay errores de validacion 
 
-  if (problemaValidacion){
-    const url = "problemas_validacion.html";
+     
 
-    // Dimensiones de la ventana que quieres abrir
-    var ancho = 550;
-    var alto = 800;
-
-    // Calcula la posición x e y para centrar la ventana
-    var posicionX = (window.screen.width / 2) - (ancho / 2);
-    var posicionY = (window.screen.height / 2) - (alto / 2);
-
-    // Asegúrate de que las posiciones no sean negativas
-    posicionX = posicionX < 0 ? 0 : posicionX;
-    posicionY = posicionY < 0 ? 0 : posicionY;
-
-    // Abre la nueva ventana centrada
-    var nuevaVentana = window.open(url, "ventana1", "width=" + ancho + ",height=" + alto + ",left=" + posicionX + ",top=" + posicionY + ",scrollbars=YES,toolbar=NO,status=NO,resizable=YES,menubar=NO,location=NO,directories=NO");
-
-    // Enfoca la nueva ventana en caso de que el navegador lo permita
-    if (window.focus) {
-        nuevaVentana.focus();
-    }
-
-    console.log('%c ***** Error no se ha podido almacenar el usuario en el vector, verifica tus datos con los errores mostrados por consola e intenta de nuevo  ', 'color: red; font-size: 16px;');
-
-  } else { //? Si no hay ningun error, muestro un mensaje por pantalla de que se han guardado y las guardo con setcookie
-
-    const url = "validacion_correcta.html";
-
-    // Dimensiones de la ventana que quieres abrir
-    var ancho = 550;
-    var alto = 800;
-
-    // Calcula la posición x e y para centrar la ventana
-    var posicionX = (window.screen.width / 2) - (ancho / 2);
-    var posicionY = (window.screen.height / 2) - (alto / 2);
-
-    // Asegúrate de que las posiciones no sean negativas
-    posicionX = posicionX < 0 ? 0 : posicionX;
-    posicionY = posicionY < 0 ? 0 : posicionY;
-
-    // Abre la nueva ventana centrada
-    var nuevaVentana = window.open(url, "ventana1", "width=" + ancho + ",height=" + alto + ",left=" + posicionX + ",top=" + posicionY + ",scrollbars=YES,toolbar=NO,status=NO,resizable=YES,menubar=NO,location=NO,directories=NO");
-
-    // Enfoca la nueva ventana en caso de que el navegador lo permita
-    if (window.focus) {
-        nuevaVentana.focus();
-    }
-
-    //console.log('%cSe han guardado las cookies de forma exitosa', 'color: green; font-size: 17px;');
-    
-    
-    //todo Primero tengo que verificar que el dni que me metan no este repetido
+     //todo Primero tengo que verificar que el dni que me metan no este repetido
    if (!existeDni(input_dni)){ //* Si la funcion existeDni no me devuelve errores, guardo el usuario.
+    //todo Almacenamos en las cookies lo que introuce el usuario en los inputs 
+    setCookie("nombre" , input_nombre , 1); // Almacena el nombre que ha introducido el usuario por el input durante 1 hora
+    setCookie("apellidos" , input_apellidos , 1); // Almacena el Apellido que ha introducido el usuario por el input durante 1 hora
+    setCookie("dni" , input_dni , 1); // Almacena el dni que ha introducido el usuario por el input durante 1 hora
+    setCookie("telefono" , input_telefono , 1); // Almacena el telefono que ha introducido el usuario por el input durante 1 hora
+    setCookie("email" , input_email , 1); // Almacena el email que ha introducido el usuario por el input durante 1 hora
+    setCookie("fecha_nacimiento" , fechaInput , 1);
+    setCookie("asignatura" , RadioSeleccionado , 1); // Almacenamos lo que seleccona el usuario en el radioboton
     //todo Creamos la estructura del json y le pasamos en cada clave el valor que escribe el usuario en los inputs.
     let jsonUsuario = {
       nombre:input_nombre,
@@ -294,7 +258,8 @@ function setCookie(cname, cvalue) {
       dni:input_dni,
       telefono:input_telefono,
       email:input_email,
-      fecha_nacimiento: fechaInput
+      fecha_nacimiento: fechaInput,
+      asignatura: RadioSeleccionado
     };
 
     //todo cada vez que le damos a guardar añadimos al vector el json de ese usuario: 
@@ -303,57 +268,27 @@ function setCookie(cname, cvalue) {
     console.log(arrayUsuariosFormulario);
 
     document.getElementById("mensaje_añadido_user_array").textContent = "El usuario " + jsonUsuario.nombre + " ha sido añadido al vector exitosamente";
+  
+
+    abrirVentanaValidacionCorrecta();
     
 
-   } else { //* Si no es que hay un dni repetido
+  } else { //? Si no es por que hay un dni repetido 
 
     document.getElementById("mensaje_añadido_user_array").textContent = "Error: Ya existe un usuario con este mismo DNI";
+    console.log("%cError: Ya existe un usuario con este mismo DNI", "color: orange; font-size: 16px; ");
     problemaValidacion = true;
-
-   }
-
-
-
-
-
-
-
-
-
-
- /*    //todo Almacenamos en las cookies lo que introuce el usuario en los inputs 
-      setCookie("nombre" , input_nombre , 1); // Almacena el nombre que ha introducido el usuario por el input durante 1 hora
-      setCookie("apellidos" , input_apellidos , 1); // Almacena el Apellido que ha introducido el usuario por el input durante 1 hora
-      setCookie("dni" , input_dni , 1); // Almacena el dni que ha introducido el usuario por el input durante 1 hora
-      setCookie("telefono" , input_telefono , 1); // Almacena el telefono que ha introducido el usuario por el input durante 1 hora
-      setCookie("email" , input_email , 1); // Almacena el email que ha introducido el usuario por el input durante 1 hora
-      //! falta la fecha tengo que hacer validacion. */
+    abrirVentanaValidacionErronea(); //* Abrimos la ventana de error, si el dni esta repetido 
   }
+  } else {
+     // Manejo de cualquier otro error de validación
+     abrirVentanaValidacionErronea();
   }
+}
 
-
-   //! ------------------------------ FUNCION QUE DEVUELVE LO QUE ALMACENAS LAS COOKIES EN OTRA PAGINA (VALIDACION_CORRECTA.HTML) -----------
- /*  function mostrarDatosValidacionCorrecta(){
-    //todo Devolvemos lo que almacenan las cookies 
-
-    return{
-      nombre:getCookie("nombre"),
-      apellidos:getCookie("apellidos"),
-      dni:getCookie("dni"),
-      telefono:getCookie("telefono"),
-      email:getCookie("email"),
-      fechaNacimiento:getCookie("fecha")
-    };
-  }
- */
 
 
   //todo Funcion que verifica que no se introduzca un dni repetido
-
-  
-
-    
-
     function existeDni(dniBuscado) {
       //? 1º forma 
       // Recorremos todo el array de usuarios
@@ -379,36 +314,113 @@ function setCookie(cname, cvalue) {
     return usuario.dni === dni; // Comparamos el DNI del usuario actual del array con el DNI que queremos verificar
   }); */
 
+
+//* Funcion que ejecuta el boton "Buscar dni" que busca de quien es el dni introducido por el input
+  const buscarDni = () => {
+    let dniAbuscar = document.getElementById("buscarDniInput").value.trim().toUpperCase();
+
+    let dniUsuarioEncontrado = arrayUsuariosFormulario.find(jsonUsuario => jsonUsuario.dni === dniAbuscar) //* find() devuelve el primer elemento que cumple con la condición especificada.Cuando alumnoEncontrado es asignado con el resultado de .find(), se convierte en una referencia al objeto del array alumnos que coincidió con el criterio de búsqueda. Dicho objeto tiene una estructura que has definido anteriormente al crearlo, que incluye las propiedades nombre, Apellidos, email, dni, y fecha_nacimiento. Dado que alumnoEncontrado es uno de estos objetos, puedes acceder a sus propiedades directamente usando la notación de punto.
+
+    if (dniUsuarioEncontrado){ //* Si se ha encontrado el dni del alumno
+      console.log('%cEl DNI ' + dniAbuscar + ' es de ' + dniUsuarioEncontrado.nombre, 'color: green; font-size: 20px;');
+      document.getElementById("mostrar_mensaje_dni").textContent = " El DNI -> " + dniAbuscar + " es del alumno/a " + dniUsuarioEncontrado.nombre;
+    } else { //* Si no se ha encontrado el dni 
+      console.log('%cNo ha sido encontrado un alumno con el DNI ' + dniAbuscar, 'color: red; font-size: 20px;');
+      document.getElementById("mostrar_mensaje_dni").textContent = " El DNI -> " + dniAbuscar + " no ha sido encontrado, verifica el dni y vuelve a intentarlo";
+      mensaje.classList.add("error-mensaje"); // Añade la clase para texto en rojo
+      mensaje.classList.remove("mensaje-verde"); // Elimina la clase de mensaje verde si está presente
+    }
+
+  }
+
+
+  //* Funcion que ejecuta el boton "Buscar Alumnos" que busca todos los alumnos que estan matriculados en una asignatura
+
+  const buscarAlumnosPorAsignatura = () => {
+
+    let arrayAlumnosEnAsignatura = []; //? Creamos el array donde se van a almacenar el nombre de los alumnos que estan matriculados en la asginatura que se busque.
+    let asignaturaAbuscar = document.getElementById("buscarAsignaturaInput").value.trim().toUpperCase(); //? Recogemos lo que se introduce en el input
+
+    arrayUsuariosFormulario.forEach(jsonUsuario => { //? Recorremos nuestro array de usuarios, el que tiene el json con todos los atributos de nombre etc... y le definimos un elemento que en este caso es el nombre de mi json.
+      if (jsonUsuario.asignatura === asignaturaAbuscar){ //? Si el alumno del array arrayUsuariosFormulario esta matriculado en la asignatura que estamos buscando (asignaturaBuscada)
+        arrayAlumnosEnAsignatura.push(jsonUsuario.nombre); //? Añadimos el nombre del alumno
+      }
+
+
+      //todo Si el arrayAlumnosEnAsignatura esta vacia, es porque no se ha encontrado ningun alumno matriculado en esa asignatura.
+
+      if (arrayAlumnosEnAsignatura.length === 0){
+        console.log('%c No se ha encontrado ningun alumno que este matriculado en la asignatura ' + asignaturaAbuscar, 'color: red; font-size: 20px;');
+        document.getElementById("mostrar_mensaje_asignatura").textContent = " No se ha encontrado ningun alumno que este matriculado en la asginatura  " +  asignaturaAbuscar ;
+      } else { //todo Si no, es porque ha encontrado como minimo una persona.
+        console.log('%cEn la asignatura ' + asignaturaAbuscar + ' están matriculados ' + arrayAlumnosEnAsignatura.join(', '), 'color: green; font-size: 20px;');
+        document.getElementById("mostrar_mensaje_asignatura").textContent = " En la asignatura -> " + asignaturaAbuscar + " estan matriculados los siguientes alumnos: " + arrayAlumnosEnAsignatura;
+      }
+
+      console.log(arrayAlumnosEnAsignatura);
+
+    })
+
+
+  }
+
+
   
 
+function abrirVentanaValidacionCorrecta(){
+
+  const url = "validacion_correcta.html";
+
+    // Dimensiones de la ventana que quieres abrir
+    var ancho = 550;
+    var alto = 800;
+
+    // Calcula la posición x e y para centrar la ventana
+    var posicionX = (window.screen.width / 2) - (ancho / 2);
+    var posicionY = (window.screen.height / 2) - (alto / 2);
+
+    // Asegúrate de que las posiciones no sean negativas
+    posicionX = posicionX < 0 ? 0 : posicionX;
+    posicionY = posicionY < 0 ? 0 : posicionY;
+
+    // Abre la nueva ventana centrada
+    var nuevaVentana = window.open(url, "ventana1", "width=" + ancho + ",height=" + alto + ",left=" + posicionX + ",top=" + posicionY + ",scrollbars=YES,toolbar=NO,status=NO,resizable=YES,menubar=NO,location=NO,directories=NO");
+
+    // Enfoca la nueva ventana en caso de que el navegador lo permita
+    if (window.focus) {
+        nuevaVentana.focus();
+    }
+
+}
 
 
+function abrirVentanaValidacionErronea(){
 
+  const url = "problemas_validacion.html";
 
+    // Dimensiones de la ventana que quieres abrir
+    var ancho = 550;
+    var alto = 800;
 
+    // Calcula la posición x e y para centrar la ventana
+    var posicionX = (window.screen.width / 2) - (ancho / 2);
+    var posicionY = (window.screen.height / 2) - (alto / 2);
 
+    // Asegúrate de que las posiciones no sean negativas
+    posicionX = posicionX < 0 ? 0 : posicionX;
+    posicionY = posicionY < 0 ? 0 : posicionY;
 
+    // Abre la nueva ventana centrada
+    var nuevaVentana = window.open(url, "ventana1", "width=" + ancho + ",height=" + alto + ",left=" + posicionX + ",top=" + posicionY + ",scrollbars=YES,toolbar=NO,status=NO,resizable=YES,menubar=NO,location=NO,directories=NO");
 
+    // Enfoca la nueva ventana en caso de que el navegador lo permita
+    if (window.focus) {
+        nuevaVentana.focus();
+    }
 
+    console.log('%c ***** Error no se ha podido almacenar el usuario en el vector, verifica tus datos con los errores mostrados por consola e intenta de nuevo  ', 'color: red; font-size: 16px;');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -449,6 +461,21 @@ function setCookie(cname, cvalue) {
 }
 
 
+ //! ------------------------------ FUNCION QUE DEVUELVE LO QUE ALMACENAS LAS COOKIES EN OTRA PAGINA (VALIDACION_CORRECTA.HTML) -----------
+ function mostrarDatosValidacionCorrecta(){
+  //todo Devolvemos lo que almacenan las cookies 
+
+  return{
+    nombre:getCookie("nombre"),
+    apellidos:getCookie("apellidos"),
+    dni:getCookie("dni"),
+    telefono:getCookie("telefono"),
+    email:getCookie("email"),
+    fechaNacimiento:getCookie("fecha_nacimiento"),
+    asignatura:getCookie("asignatura")
+  };
+}
+
 
 //todo Eliminar las cookies, que en realidad no la estamos borrando, solamente estamos quitando el valor de esa cookie, pero el nombre de la cookie sigue existiendo. 
 function eliminar_cookies(){
@@ -471,7 +498,32 @@ function eliminar_cookies(){
 //   }
 // }
 
-//todo Sergio
+//todo Ver Json
+
+function verJson() {
+  // Convertir el array de alumnos a una cadena JSON formateada
+  var datosEnJson = JSON.stringify(arrayUsuariosFormulario, null, 2);
+
+  if (window.jsonWindow && !window.jsonWindow.closed) { 
+      // Si 'jsonWindow' existe y la ventana no está cerrada, actualiza el contenido
+      window.jsonWindow.postMessage(datosEnJson, "*");
+  } else { 
+      // Si no hay pestaña abierta, abre una nueva y guarda la referencia
+      window.jsonWindow = window.open('verJson.html');
+      window.jsonWindow.onload = function () {
+          this.postMessage(datosEnJson, "*");
+
+          // Establecer actualización periódica
+          setInterval(() => {
+              var datosActualizados = JSON.stringify(arrayUsuariosFormulario, null, 2);
+              this.postMessage(datosActualizados, "*");
+          }, 5000); // Actualiza cada 5000 milisegundos (5 segundos)
+      };
+  }
+}
+
+//* 11 de noviembre 19:48
+
 
 
 

@@ -9,7 +9,7 @@ function validarMatricula() {
   if (expresMatricula.test(InputMatricula)) {
     //? Si es valida la vamos a revisar si esta ya añadadida al array
 
-    if (existeMatricula(InputMatricula)) { //* Si no esta en el array, decimos que es valida y la añadimos
+    if (existeMatricula(InputMatricula)) { //* Si no esta en el array la añadimos
       console.log("%cLa matrícula" + InputMatricula + " es válida y se ha añadido al vector.", "color: green;");
       document.getElementById("mensaje_validacion_matricula").textContent = "La matrícula" + InputMatricula + " es válida y se ha añadido al vector.";
       //? Añadimos los datos al array, pero con un nombre de clave para luego acceder de forma mas sencilla al valor.

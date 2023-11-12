@@ -306,7 +306,7 @@ function mostrarCookies() {
 
   setCookie("edad" , edadNumero , 1);
 
-  // verificar si numero es un numero (isNan) y es entero (isInteger).
+  // verificar si edadNumero es un numero (isNan) y es entero (isInteger).
   if (!isNaN(edadNumero) && Number.isInteger(edadNumero)) {
     console.log("%cEl número es entero", "color: green;");
   } else {

@@ -41,8 +41,19 @@ function setCookie(cname, cvalue) {
     let input_nombre = document.getElementById("nombre").value.trim();
 
     //Guardar lo que ha seleccionado el usuario en el radiobuttom
-    let RadioSeleccionado = document.querySelector("input[name='modoAcceso']:checked").value.toUpperCase();
-    console.log(RadioSeleccionado);
+    let radioSeleccionadoElement = document.querySelector("input[name='modoAcceso']:checked");
+
+    if (radioSeleccionadoElement) {
+    // Si hay un radio seleccionado, obtén su valor y transfórmalo a mayúsculas
+    var radioSeleccionado = radioSeleccionadoElement.value.toUpperCase();
+    console.log(radioSeleccionado);
+    // Continúa con el resto de tu lógica...
+    } else {
+    // Si no hay ningún radio seleccionado, establece problemasValidacion a true
+    problemaValidacion = true;
+    // Puedes mostrar un mensaje de error o tomar otra acción aquí
+    }
+
 
 
     //! --------------------------------------- VALIDACION DE NOMBRE -------------------------------------
@@ -234,6 +245,26 @@ function setCookie(cname, cvalue) {
 
         //! ------------------------------------- FIN VALIDACION PARA LA FECHA -------------------------------------
 
+
+        //! ------------------------------------- VALIDACION PARA LA EDAD ----------------------------------------------
+
+        let edadInput = document.getElementById("edad").value.trim(); //* Recogemos lo que escribe el usuario por teclado.
+
+        let edadEntero = parseInt(edadInput); //* Pasamos a numero entero lo que escribe el usuario, int elimina los decimales.
+
+        if (!isNaN(edadEntero) && Number.isInteger(edadEntero)) {
+          console.log("%cEl número es entero", "color: green;");
+        } else {
+          console.log("%cError: El número no es entero o no es un número válido", "color: orange; font-size:13px;");
+          problemaValidacion = true;
+        }
+
+
+
+
+
+        //! ------------------------------------- FIN VALIDACION PARA LA EDAD ----------------------------------------------
+
     
         //? abrir una ventana u otra si hay un error o mas en las validaciones o si no hay ningun error 
 
@@ -247,19 +278,21 @@ function setCookie(cname, cvalue) {
     setCookie("nombre" , input_nombre , 1); // Almacena el nombre que ha introducido el usuario por el input durante 1 hora
     setCookie("apellidos" , input_apellidos , 1); // Almacena el Apellido que ha introducido el usuario por el input durante 1 hora
     setCookie("dni" , input_dni , 1); // Almacena el dni que ha introducido el usuario por el input durante 1 hora
+    setCookie("edad" , edadEntero , 1) // Almacena la edad que ha introducido el uusario por el input durante 1 hora.
     setCookie("telefono" , input_telefono , 1); // Almacena el telefono que ha introducido el usuario por el input durante 1 hora
     setCookie("email" , input_email , 1); // Almacena el email que ha introducido el usuario por el input durante 1 hora
     setCookie("fecha_nacimiento" , fechaInput , 1);
-    setCookie("asignatura" , RadioSeleccionado , 1); // Almacenamos lo que seleccona el usuario en el radioboton
+    setCookie("asignatura" , radioSeleccionado , 1); // Almacenamos lo que seleccona el usuario en el radioboton
     //todo Creamos la estructura del json y le pasamos en cada clave el valor que escribe el usuario en los inputs.
     let jsonUsuario = {
       nombre:input_nombre,
       apellidos:input_apellidos,
       dni:input_dni,
+      edad:edadEntero,
       telefono:input_telefono,
       email:input_email,
       fecha_nacimiento: fechaInput,
-      asignatura: RadioSeleccionado
+      asignatura: radioSeleccionado
     };
 
     //todo cada vez que le damos a guardar añadimos al vector el json de ese usuario: 
@@ -469,6 +502,7 @@ function abrirVentanaValidacionErronea(){
     nombre:getCookie("nombre"),
     apellidos:getCookie("apellidos"),
     dni:getCookie("dni"),
+    edad:getCookie("edad"),
     telefono:getCookie("telefono"),
     email:getCookie("email"),
     fechaNacimiento:getCookie("fecha_nacimiento"),
