@@ -300,6 +300,9 @@ function setCookie(cname, cvalue) {
     arrayUsuariosFormulario.push(jsonUsuario);
     console.log(arrayUsuariosFormulario);
 
+    var datosEnJson = JSON.stringify(arrayUsuariosFormulario, null, 2);
+    console.log(datosEnJson);
+
     document.getElementById("mensaje_añadido_user_array").textContent = "El usuario " + jsonUsuario.nombre + " ha sido añadido al vector exitosamente";
   
 
@@ -362,6 +365,47 @@ function setCookie(cname, cvalue) {
       document.getElementById("mostrar_mensaje_dni").textContent = " El DNI -> " + dniAbuscar + " no ha sido encontrado, verifica el dni y vuelve a intentarlo";
       mensaje.classList.add("error-mensaje"); // Añade la clase para texto en rojo
       mensaje.classList.remove("mensaje-verde"); // Elimina la clase de mensaje verde si está presente
+    }
+
+  }
+
+
+//* Podemos comprobar lo que sea cambiando lo siguiente arrayUsuariosFormulario[i].dni ese dni lo podemos cambiar por cualquier clave que tenga el array.
+  function existeNombre (nombreComprobar){
+
+    for (let i = 0; i < arrayUsuariosFormulario.length; i++) {
+      
+      if (arrayUsuariosFormulario[i].nombre === nombreComprobar){ //? Recorremos el valor de la clave asignatura en cada indice del array
+        return i; //* Si existe me devuelve el indice
+      } 
+    }
+    return -1; //* Si no existe me devuelve -1
+
+  }
+
+
+  //* Funcion que "elimina la asigntura que esta matriculado el usuario" (lo deja sin valor) dado el nombre del usuario.
+
+  function borrarAsignatura (){
+
+    let nombreAlumno = document.getElementById("nombreAlumno").value.trim();
+
+    let indiceNombreAlumno = existeNombre(nombreAlumno);
+
+    if (indiceNombreAlumno !== -1){ //* Si es distinto de -1 es porque existe el nombre del alumno
+
+      //? Accedemos al array 'arrayUsuariosFormulario', posicionándonos en el índice indicado por 'indiceNombreAlumno'.
+      //? Este índice se obtuvo de la función 'existeNombre', que devuelve la posición del objeto en el array cuyo 'nombre' coincide con el nombre que le pasamos por parametro.
+      //? Una vez localizado el objeto correcto en el array, accedemos a su propiedad 'asignatura'.
+      //? En lugar de eliminar el objeto completo, lo que hacemos es establecer el valor de la propiedad 'matricula' de este objeto a un string vacío ("").
+      //? Esto efectivamente "borra" la matrícula (dejándola en blanco o nula) pero mantiene el objeto, incluido el nombre y cualquier otra propiedad, en el array.
+
+
+      arrayUsuariosFormulario[indiceNombreAlumno].asignatura = "";
+      console.log(arrayUsuariosFormulario);
+
+    } else {
+      console.log("No existe un alumno con el nombre " + nombreAlumno);
     }
 
   }
@@ -516,11 +560,15 @@ function eliminar_cookies(){
   setCookie("nombre" , "");
   setCookie("apellidos" , ""); 
   setCookie("dni" , ""); 
+  setCookie("edad" , ""); 
   setCookie("telefono" , ""); 
   setCookie("email" , ""); 
   setCookie("Fecha" , "");
+  setCookie("asignatura" , "");
   console.log('%cSe han borrado las cookies de forma exitosa', 'color: green; font-size: 20px;');
 }
+
+
 
 
 
@@ -556,11 +604,4 @@ function verJson() {
   }
 }
 
-//* 11 de noviembre 19:48
-
-
-
-
-
-
-
+//* 12 noviembre 20:48

@@ -341,5 +341,109 @@ console.log("Json ->" + datosPersonaJSON);
 
 
 
+//todo Poner la primera letra de una cadena en Mayuscula 
+
+// Obtener el valor del input y eliminar espacios en blanco
+let nombreAlumno = document.getElementById("nombreAlumno").value.trim();
+
+// Función para capitalizar la primera letra
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// Aplicar la función al valor obtenido
+let nombreAlumnoCapitalizado = capitalizeFirstLetter(nombreAlumno);
+
+console.log(nombreAlumnoCapitalizado); // El nombre con la primera letra en mayúscula
+
+
+
+
+
+//todo Metodo para borrar la asignatura de un alumno pasado el nombre, esta funcion esta en el formulario para el examen.
+
+//? 1º Metodo 
+
+//* Podemos comprobar lo que sea cambiando lo siguiente arrayUsuariosFormulario[i].dni ese dni lo podemos cambiar por cualquier clave que tenga el array apellidos, nombre , fecha de nacimineto.
+function existeNombre (nombreComprobar){
+
+  for (let i = 0; i < arrayUsuariosFormulario.length; i++) {
+    
+    if (arrayUsuariosFormulario[i].nombre === nombreComprobar){ //? Recorremos el valor de la clave asignatura en cada indice del array
+      return i; //* Si existe me devuelve el indice donde esta el valor.
+    } 
+  }
+  return -1; //* Si no existe me devuelve -1
+
+}
+
+//? 2º Metodo y el que borra: 
+
+  //* Funcion que "elimina la asigntura que esta matriculado el usuario" (lo deja sin valor) dado el nombre del usuario.
+
+  function borrarAsignatura (){
+
+    let nombreAlumno = document.getElementById("nombreAlumno").value.trim();
+
+    let indiceNombreAlumno = existeNombre(nombreAlumno);
+
+    if (indiceNombreAlumno !== -1){ //* Si es distinto de -1 es porque existe el nombre del alumno
+
+      //? Accedemos al array 'arrayUsuariosFormulario', posicionándonos en el índice indicado por 'indiceNombreAlumno'.
+      //? Este índice se obtuvo de la función 'existeNombre', que devuelve la posición del objeto en el array cuyo 'nombre' coincide con el nombre que le pasamos por parametro.
+      //? Una vez localizado el objeto correcto en el array, accedemos a su propiedad 'asignatura'.
+      //? En lugar de eliminar el objeto completo, lo que hacemos es establecer el valor de la propiedad 'matricula' de este objeto a un string vacío ("").
+      //? Esto efectivamente "borra" la matrícula (dejándola en blanco o nula) pero mantiene el objeto, incluido el nombre y cualquier otra propiedad, en el array.
+
+
+      arrayUsuariosFormulario[indiceNombreAlumno].asignatura = "";
+      console.log(arrayUsuariosFormulario);
+
+    } else {
+      console.log("No existe un alumno con el nombre " + nombreAlumno);
+    }
+
+  }
+
+// todo Otro ejemplo de como borrar la asignatura pero pasando el dni que tiene mas sentido ya que no se puede repetir. esta funcion esta en el formulario para el examen.
+
+//? 1º metodo
+function existeDni (dniComprobar){
+
+  for (let i = 0; i < arrayUsuariosFormulario.length; i++) {
+    
+    if (arrayUsuariosFormulario[i].dni === dniComprobar){ //* Recorro y compruebo cada valor de la clave dni y si coincide con el dniComprobar devuelvo el indice donde esta el dni.
+
+      return i;
+    }
+  }
+  return -1 //* Si no lo encuentro devuelvo -1.
+
+}
+
+
+//? 2º metodo, este es el que borra pasado el dni.
+
+function borrarAsignaturaAlumnoPasandoUnDni(){
+
+  let inputDni = document.getElementById("inputDniBorrar").value.trim();
+
+  let letIndiceDelDniEscritoInput = existeDni(inputDni) //* Esto si lo encuentra va a devolver el indice donde se encuentra el dni.
+
+  if (letIndiceDelDniEscritoInput !== -1){ //* Si es distinto de -1 es porque el dni existe y devuelve una posicion.
+
+
+    arrayUsuariosFormulario[letIndiceDelDniInput].asignatura = ""; //? Se mete dentro del array y se posiciona en el indice donde esta el dni  y a continuacion accede al valor de la clave asignatura y la deja en blanco.
+    console.log(arrayUsuariosFormulario);
+  } else{
+    //! No se ha encontrado el dni y por lo tanto no puedo borrar la asignatura del alumno.
+  }
+
+}
+
+
+
+
+
   
   
