@@ -582,6 +582,7 @@ function eliminar_cookies(){
 
 //todo Ver Json
 
+
 function verJson() {
   // Convertir el array de alumnos a una cadena JSON formateada
   var datosEnJson = JSON.stringify(arrayUsuariosFormulario, null, 2);
@@ -604,4 +605,5 @@ function verJson() {
   }
 }
 
-//* 12 noviembre 20:48
+
+//* 12 noviembre 1:07
